@@ -6,5 +6,5 @@ urlpatterns = [
     path("about/", about),
     path("blog/", PostListView.as_view()),
     path("blog/<int:pk>", PostDetailView.as_view()),
-    path("portfolio/", portfolio)
+    path("portfolio/", portfolio),
 ]
