@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %} My works {% endblock title %}
 {% load static %}
-{% load bootstrap5 %}
+{% load django_bootstrap5 %}
 {% block content %}
 
         <!--================Home Banner Area =================-->
@@ -32,17 +32,19 @@
 					<ul class="filter list">
 						<li class="active" data-filter="*"><a href="#">All Categories</a></li>
                         {% for cat in categories %}
+						{% for cat in cat %}
 						<li data-filter=".{{ cat.name }}"><a href="#">{{ cat.name }}</a></li>
+                        {% endfor %}
                         {% endfor %}
 					</ul>
 				</div>
 				<div class="projects_inner row">
-                    {% for project in portfolios %}
-					<div class="col-lg-4 col-sm-6 {% for cat in project.category.all %} {{ cat }} {% endfor %}">
+                    {% for project in projects %}
+					<div class="col-lg-4 col-sm-6 {% for cat in project.categories.all %} {{ cat }} {% endfor %}">
 						<div class="projects_item">
 							<img class="img-fluid" src="{{ project.image.url }}" alt="">
 							<div class="projects_text">
-								<a href="{{ project.get_absolute_url }}"><h4>{{ project.title }}</h4></a>
+								<a href="#"><h4>{{ project.name }}</h4></a>
 							</div>
 						</div>
 					</div>

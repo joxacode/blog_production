@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from . import models
-from .models import About, Post, SocialLink, ProfileData
+from .models import About, Post, SocialLink, ProfileData, Tool, Category, Project
 from django.views import generic
 
 # Create your views here.#
@@ -31,7 +31,26 @@ def home(request):
 
 
 def about(request):
-    return render(request, "about-us.html")
+    about = About.objects.last()
+    tools = Tool.objects.all()
+
+    context = {
+        "about": about,
+        "tools": tools,
+    }
+    return render(request, "about-us.html", context)
+
+
+def portfolio(request):
+    categories = Category.objects.all(),
+    projects = Project.objects.all(),
+
+    context = {
+        "categories": categories,
+        "projects": projects,
+    }
+
+    return render(request, "portfolio.html", context)
 
 
 class PostListView(generic.ListView):
