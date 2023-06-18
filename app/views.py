@@ -93,3 +93,5 @@ class PostDetailView(generic.DetailView):
         context["most_watched_posts"] = popular_posts
 
         return context
+
+
